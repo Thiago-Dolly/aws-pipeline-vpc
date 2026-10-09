@@ -21,3 +21,8 @@ output "security_group_id" {
   description = "The ID of the security group"
   value       = aws_security_group.aws_security_group.id
 }
+
+output "aws_key_pair_name" {
+  description = "The name of the AWS Key Pair"
+  value       = aws_key_pair.aws_key_pair.key_name
+}
