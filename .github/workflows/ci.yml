@@ -31,12 +31,13 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan 
+        run: terraform plan -out=plan.out
 
       - name: Upload Terraform Plan
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
+          path: plan.out
           retention-days: 1
 
   apply:
@@ -62,7 +63,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve 
+        run: terraform apply -auto-approve plan.out
 
   destroy:
     name: Destroy Infrastructure
